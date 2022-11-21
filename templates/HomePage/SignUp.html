@@ -1,0 +1,36 @@
+{% extends 'HomePage/base.html' %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href={% static '/HomePage/css/main.css' %}>
+    <div class="container" id="container">
+        <div class="form-container aunty">
+            <form action="#">
+                <h1>Регистрация</h1>
+                <span>Зарегестрируйся через соц. сети</span>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>или используй почту</span>
+                <input type="text" placeholder="Имя"/>
+                <input type="text" placeholder="Фамилия"/>
+                <input type="email" placeholder="Email"/>
+                <input type="password" placeholder="Пароль"/>
+                <input type="password" placeholder="Подтверждение пароля"/>
+                <button>Sign Up</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+                    <h1>Добро пожаловать!</h1>
+                    <p>Регистрация займет всего несколько секунд.
+                    Введите ваши данные, а так же адрес вашей почты.</p>
+                    <span>Уже проходили регистрацию?</span>
+                    <button class="ghost" id="signUp">Войти в аккаунт</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
