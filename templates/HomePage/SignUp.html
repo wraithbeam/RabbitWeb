@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href={% static '/HomePage/css/main.css' %}>
     <div class="container" id="container">
         <div class="form-container aunty">
-            <form action="#">
+            <form action="" method="POST">
                 <h1>Регистрация</h1>
                 <span>Зарегестрируйся через соц. сети</span>
                 <div class="social-container">
@@ -13,22 +13,33 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>или используй почту</span>
-                <input type="text" placeholder="Имя"/>
-                <input type="text" placeholder="Фамилия"/>
-                <input type="email" placeholder="Email"/>
-                <input type="password" placeholder="Пароль"/>
-                <input type="password" placeholder="Подтверждение пароля"/>
-                <button>Sign Up</button>
+                {% csrf_token %}
+                {{ form.first_name }}
+                {{ form.last_name }}
+                {{ form.username }}
+                {{ form.email }}
+                {{ form.password1 }}
+                {{ form.password2 }}
+                <button type="submit">Зарегестрироваться</button>
             </form>
         </div>
+        {{ form.errors }}
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-right">
                     <h1>Добро пожаловать!</h1>
+                    {% if messages %}
+                        <h3>Произошла ошибка:</h3>
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <p>Регистрация займет всего несколько секунд.
-                    Введите ваши данные, а так же адрес вашей почты.</p>
+                        Введите ваши данные, а так же адрес вашей почты.</p>
                     <span>Уже проходили регистрацию?</span>
-                    <button class="ghost" id="signUp">Войти в аккаунт</button>
+                    <a href="{% url 'sign-in' %}">
+                        <button class="ghost" id="signUp">Войти в аккаунт</button>
+                    </a>
                 </div>
             </div>
         </div>
