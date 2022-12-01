@@ -1,0 +1,25 @@
+<header>
+    <h1>RabbitWeb</h1>
+    <nav>
+        {% if request.user.is_authenticated %}
+            <a href={% url 'create-new-meeting' %}>Созадать встречу</a>
+        {% else %}
+            <a href={% url 'sign-in' %}>Созадать встречу</a>
+        {% endif %}
+        {% if request.user.is_authenticated %}
+            <div class="dropdown">
+                <a class="dropbtn with-border-circle">{{ request.user.username }}</a>
+                <div class="dropdown-content">
+                    <a href="#">Профиль</a>
+                    <a href={% url 'logout' %}>Выйти</a>
+                </div>
+            </div>
+        {% else %}
+            <a href={% url 'sign-in' %}>
+                <span class="sing-in with-border-circle">
+                    Войти
+                </span>
+            </a>
+        {% endif %}
+    </nav>
+</header>

@@ -1,7 +1,9 @@
 {% extends 'HomePage/base.html' %}
-{% block content %}
+{% block usage %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href={% static '/HomePage/css/main.css' %}>
+{% endblock usage %}
+{% block content %}
     <div class="container" id="container">
         <div class="form-container aunty">
             <form action="#" method="post">
@@ -18,7 +20,7 @@
                 <input type="password" name="password" placeholder="Пароль (Ivanov123)"/>
                 <button>Войти</button>
                 {% for message in messages %}
-                <h3 style="color: #FF4B2B">Ошибка входа. Неверные данные.</h3>
+                    <h3 style="color: #FF4B2B">Ошибка входа. Неверные данные.</h3>
                 {% endfor %}
             </form>
         </div>

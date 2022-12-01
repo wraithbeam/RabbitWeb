@@ -1,0 +1,8 @@
+{% extends 'HomePage/base.html' %}
+{% block usage %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href={% static '/HomePage/css/header.css' %}>
+{% endblock usage %}
+{% block content %}
+    {% include 'HomePage/Header.html' %}
+{% endblock content %}

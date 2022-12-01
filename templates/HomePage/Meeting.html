@@ -1,0 +1,21 @@
+{% extends 'HomePage/base.html' %}
+{% block usage %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href={% static '/HomePage/css/header.css' %}>
+    <link rel="stylesheet" type="text/css" href={% static '/HomePage/css/meeting.css' %}>
+{% endblock usage %}
+{% block content %}
+    <div class="call-interface angry-grid">
+        <div id="item-0" class="scroller"></div>
+        <div id="item-1" class="chosen-webcam">
+            <video id="chosen-webcam-id" autoplay></video>
+        </div>
+        <div id="item-2" class="options">
+        </div>
+        <div id="item-3" class="option"></div>
+    </div>
+{% endblock content %}
+{% block footer %}
+    <script src="{% static 'HomePage/js/web-cam.js' %}"></script>
+    <script src="{% static 'HomePage/js/web-cam-ws.js' %}"></script>
+{% endblock footer %}
