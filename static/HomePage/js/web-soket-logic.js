@@ -9,14 +9,20 @@ const webSocket = new WebSocket(
 webSocket.onopen = function () {
     //Sending webcam
     setInterval(() => {
-        webSocket.send(JSON.stringify({
-            'webcam': getFrame()
-        }));
+        if (webSocket.OPEN) {
+            webSocket.send(JSON.stringify({
+                'webcam': getFrame(),
+                'person': getPerson(),
+                'meeting': getLink()
+            }));
+        } else {
+            return
+        }
     }, 1000 / FPS);
 }
 
 webSocket.onmessage = function (e) {
-
+    fillWebcams(e.data)
 };
 
 webSocket.onclose = function (e) {

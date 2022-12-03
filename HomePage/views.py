@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import CreateUserForm
+from .models import Meeting, Participant, MeetingParticipants
 
 import datetime
 
@@ -52,8 +53,12 @@ def logout_user(request):
 def create_new_meeting(request):
     if request.user.is_authenticated:
         key = (request.user.username + datetime.datetime.now().__str__()).__hash__() + random.randint(0, 500)
-        # return render(request, 'HomePage/Meeting.html', {'key': key})
-        print(key)
+        participant = Participant.objects.get_or_create(person=request.user)
+
+        meeting = Meeting(link=key, members=1, admin=participant[0])
+        meeting.save()
+
+        MeetingParticipants(person=participant[0], meeting=meeting).save()
         return redirect(f"../../{key}")
     else:
         return redirect('sing-in')
@@ -61,6 +66,7 @@ def create_new_meeting(request):
 
 def new_meeting(request, link):
     if request.user.is_authenticated:
-        return render(request, 'HomePage/Meeting.html', {'link': link})
+        context = {'link': link, 'persone': request.user.id}
+        return render(request, 'HomePage/Meeting.html', context)
     else:
         return redirect('sing-in')

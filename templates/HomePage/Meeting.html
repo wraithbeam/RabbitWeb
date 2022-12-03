@@ -11,6 +11,8 @@
             <video id="chosen-webcam-id" autoplay></video>
         </div>
         <div id="item-2" class="options">
+            <button id="mic-io">Mute</button>
+            <button id="webcam-io">Webcam</button>
         </div>
         <div id="item-3" class="option"></div>
     </div>
@@ -18,4 +20,13 @@
 {% block footer %}
     <script src="{% static 'HomePage/js/web-cam.js' %}"></script>
     <script src="{% static 'HomePage/js/web-cam-ws.js' %}"></script>
+    <script src="{% static 'HomePage/js/web-soket-logic.js' %}"></script>
+    <script type="text/javascript">
+        const getPerson = function () {
+            return "{{ persone }}"
+        }
+        const getLink = function () {
+            return "{{ link }}"
+        }
+    </script>
 {% endblock footer %}

@@ -1,4 +1,4 @@
-const FPS = 5
+const FPS = 5 //4
 const scroller = document.getElementById('item-0')
 
 const getFrame = () => {
@@ -10,8 +10,23 @@ const getFrame = () => {
     return data;
 }
 
-const fillWebcams = () => {
-    
+const fillWebcams = (data) => {
+    var dataJson = JSON.parse(data)
+    for (var elem in dataJson) {
+        let somePersonWebcam = document.getElementById(elem)
+        if (somePersonWebcam == null) {
+            let newPersonWebcam = document.createElement('img')
+            newPersonWebcam.classList.add('people-webcam')
+            newPersonWebcam.id = elem
+            newPersonWebcam.src = dataJson[elem].webcam_meta
+            scroller.appendChild(newPersonWebcam)
+        }
+        else {
+            somePersonWebcam.src = dataJson[elem].webcam_meta
+        }
+    }
+    // let newElement = document.createElement('img');
+    // console.log(data['webcam_meta'])
+    // newElement.src = data['webcam_meta']
+    // scroller.appendChild(newElement)
 }
-
-
