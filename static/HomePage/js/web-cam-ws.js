@@ -1,4 +1,4 @@
-const FPS = 5 //4
+const FPS = 0.8 //4
 const scroller = document.getElementById('item-0')
 
 const getFrame = () => {

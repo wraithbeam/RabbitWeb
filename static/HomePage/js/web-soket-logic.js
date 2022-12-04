@@ -2,7 +2,7 @@ const webSocket = new WebSocket(
     'ws://'
     + window.location.host
     + '/ws/meeting/'
-    + "aue"
+    + "123"
     + '/'
 );
 
@@ -22,6 +22,7 @@ webSocket.onopen = function () {
 }
 
 webSocket.onmessage = function (e) {
+    console.log('take')
     fillWebcams(e.data)
 };
 
