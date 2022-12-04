@@ -61,7 +61,7 @@ def create_new_meeting(request):
         MeetingParticipants(person=participant[0], meeting=meeting).save()
         return redirect(f"../../{key}")
     else:
-        return redirect('sing-in')
+        return redirect('sign-in')
 
 
 def new_meeting(request, link):
@@ -69,4 +69,4 @@ def new_meeting(request, link):
         context = {'link': link, 'persone': request.user.id}
         return render(request, 'HomePage/Meeting.html', context)
     else:
-        return redirect('sing-in')
+        return redirect('sign-in')
