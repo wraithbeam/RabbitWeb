@@ -61,8 +61,11 @@ def create_new_meeting(request):
 def new_meeting(request, link):
     try:
         if request.user.is_authenticated:
-            context = {'link': link, 'person_initials': request.user.last_name[0] + request.user.first_name[0],
-                       'person_name': request.user.last_name + '_' + request.user.first_name}
+            context = {'link': link,
+                       'person_initials': request.user.last_name[0] + request.user.first_name[0],
+                       'person_name': request.user.last_name + '_' + request.user.first_name,
+                       'person_id': request.user.id
+                       }
             return render(request, 'HomePage/Meeting.html', context)
         else:
             return redirect('sign-in')
