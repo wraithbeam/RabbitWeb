@@ -52,15 +52,18 @@
 {% endblock content %}
 {% block footer %}
     <script type="text/javascript">
-        const getPerson = function () {
-            return "{{ persone }}"
+        const getPersonInitials = function () {
+            return "{{ person_initials }}"
         }
         const getLink = function () {
             return "{{ link }}"
         }
+        const getPersonName = function (){
+            return "{{ person_name }}"
+        }
     </script>
     <script src="{% static 'HomePage/js/web-cam.js' %}"></script>
     <script src="{% static 'HomePage/js/web-cam-ws.js' %}"></script>
-    <script src="{% static 'HomePage/js/web-soket-logic.js' %}"></script>
+    <script src="{% static 'HomePage/js/web-socket-logic.js' %}"></script>
     <script src="{% static 'HomePage/js/button_bar.js' %}"></script>
 {% endblock footer %}

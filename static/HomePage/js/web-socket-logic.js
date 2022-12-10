@@ -4,19 +4,20 @@ const webSocket = new WebSocket(
     + '/ws/meeting/'
     + getLink()
     + '/'
-    + getPerson()
-    + '/'
+    // + getPerson()
+    // + '/'
 );
 
 webSocket.onopen = function () {
     //Sending webcam
+    console.log("Open")
     setInterval(() => {
         if (webSocket.OPEN) {
             webSocket.send(JSON.stringify({
                 'webcam': getFrame(),
-                'person': getPerson(),
+                'person_initials': getPersonInitials(),
+                'person_name' : getPersonName(),
                 'meeting': getLink(),
-                'webcam_on': is_webcam_on
             }));
         } else {
             return
@@ -29,5 +30,5 @@ webSocket.onmessage = function (e) {
 };
 
 webSocket.onclose = function (e) {
-    console.error('Chat socket closed unexpectedly');
+    console.error('Chat socket closed unexpectedly', e);
 };

@@ -53,13 +53,6 @@ def logout_user(request):
 def create_new_meeting(request):
     if request.user.is_authenticated:
         key = (request.user.username + datetime.datetime.now().__str__()).__hash__() + random.randint(0, 500)
-        participant = Participant.objects.get_or_create(person=request.user)
-
-        meeting = Meeting(link=key, members=1, admin=participant[0])
-        meeting.save()
-
-        meetingParticipant = MeetingParticipants.objects.get_or_create(person=participant[0], meeting=meeting)
-        meetingParticipant[0].save()
         return redirect(f"../../{key}")
     else:
         return redirect('sign-in')
@@ -67,22 +60,9 @@ def create_new_meeting(request):
 
 def new_meeting(request, link):
     try:
-        meeting = Meeting.objects.get(link=link)
         if request.user.is_authenticated:
-            participant = Participant.objects.get_or_create(person=request.user)
-            meetingParticipant = MeetingParticipants.objects.get_or_create(person=participant[0], meeting=meeting)
-
-            if meetingParticipant[0].meeting == meeting:
-                context = {'link': link, 'persone': participant[0].id}
-                return render(request, 'HomePage/Meeting.html', context)
-
-            meeting.members += 1
-
-            participant[0].save()
-            meetingParticipant[0].save()
-            meeting.save()
-
-            context = {'link': link, 'persone': request.user.id}
+            context = {'link': link, 'person_initials': request.user.last_name[0] + request.user.first_name[0],
+                       'person_name': request.user.last_name + '_' + request.user.first_name}
             return render(request, 'HomePage/Meeting.html', context)
         else:
             return redirect('sign-in')
