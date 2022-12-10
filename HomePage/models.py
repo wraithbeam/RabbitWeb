@@ -18,7 +18,7 @@ class Participant(models.Model):
     spk = models.BooleanField(default=True)
     webcam = models.BooleanField(default=False)
     mic_meta = models.TextField(default="")
-    webcam_meta = models.TextField(default="")
+    webcam_meta = models.BinaryField()
 
     def __str__(self):
         return self.person.last_name + " " + self.person.first_name

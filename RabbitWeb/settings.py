@@ -22,14 +22,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#q4a^3wx#*vzy75veuvb^o0_+8ienm9gd!0o*!^zr1*a2pvjmd'
 
 ASGI_APPLICATION = "RabbitWeb.asgi.application"
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels_redis.core.RedisChannelLayer",
-#         "CONFIG": {
-#             "hosts": [("127.0.0.1", 6367)],
-#         },
-#     },
-# }
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

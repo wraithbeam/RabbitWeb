@@ -2,7 +2,9 @@ const webSocket = new WebSocket(
     'ws://'
     + window.location.host
     + '/ws/meeting/'
-    + "123"
+    + getLink()
+    + '/'
+    + getPerson()
     + '/'
 );
 
@@ -13,7 +15,8 @@ webSocket.onopen = function () {
             webSocket.send(JSON.stringify({
                 'webcam': getFrame(),
                 'person': getPerson(),
-                'meeting': getLink()
+                'meeting': getLink(),
+                'webcam_on': is_webcam_on
             }));
         } else {
             return
@@ -22,7 +25,6 @@ webSocket.onopen = function () {
 }
 
 webSocket.onmessage = function (e) {
-    console.log('take')
     fillWebcams(e.data)
 };
 

@@ -1,32 +1,73 @@
-const FPS = 0.8 //4
+const FPS = 4 //4
 const scroller = document.getElementById('item-0')
 
 const getFrame = () => {
     const canvas = document.createElement('canvas');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext('2d').drawImage(video, 0, 0);
-    const data = canvas.toDataURL('image/png');
-    return data;
+    canvas.width = video.videoWidth / 2;
+    canvas.height = video.videoHeight / 2;
+    let ctx = canvas.getContext('2d')
+    ctx.drawImage(video, 0, 0, video.videoWidth / 2, video.videoHeight / 2);
+    return canvas.toDataURL('image/jpeg', 0.6);
 }
 
 const fillWebcams = (data) => {
-    var dataJson = JSON.parse(data)
-    for (var elem in dataJson) {
-        let somePersonWebcam = document.getElementById(elem)
+    const dataJson = JSON.parse(data);
+    const participants = [];
+    let webcam_content;
+    for (const elem in dataJson) {
+        participants.push(elem + "-container")
+        let somePersonWebcam = document.getElementById(elem + "-container")
         if (somePersonWebcam == null) {
-            let newPersonWebcam = document.createElement('img')
-            newPersonWebcam.classList.add('people-webcam')
-            newPersonWebcam.id = elem
-            newPersonWebcam.src = dataJson[elem].webcam_meta
-            scroller.appendChild(newPersonWebcam)
-        }
-        else {
-            somePersonWebcam.src = dataJson[elem].webcam_meta
+            let newPersonWebcamContainer = document.createElement('div')
+            newPersonWebcamContainer.id = elem + "-container"
+            newPersonWebcamContainer.classList.add("webcam-container")
+
+            if (dataJson[elem].webcam_meta === "data:,") {
+                createProfilePic(dataJson[elem], elem, newPersonWebcamContainer)
+            } else {
+                webcam_content = document.createElement('img')
+                webcam_content.id = elem
+                webcam_content.src = dataJson[elem].webcam_meta
+                webcam_content.classList.add("people-webcam")
+                newPersonWebcamContainer.appendChild(webcam_content)
+            }
+            scroller.appendChild(newPersonWebcamContainer)
+        } else {
+            webcam_content = document.getElementById(elem)
+            if (dataJson[elem].webcam_meta === "data:,") {
+                if (webcam_content.tagName !== 'DIV') {
+                    webcam_content.remove()
+                    createProfilePic(dataJson[elem], elem, somePersonWebcam)
+                    scroller.appendChild(somePersonWebcam)
+                }
+            } else {
+                if (webcam_content.tagName !== 'IMG') {
+                    webcam_content.remove()
+                    webcam_content = document.createElement('IMG')
+                    webcam_content.id = elem
+                    webcam_content.classList.add("people-webcam")
+                    somePersonWebcam.appendChild(webcam_content)
+                    scroller.appendChild(somePersonWebcam)
+                }
+                webcam_content.src = dataJson[elem].webcam_meta
+            }
         }
     }
-    // let newElement = document.createElement('img');
-    // console.log(data['webcam_meta'])
-    // newElement.src = data['webcam_meta']
-    // scroller.appendChild(newElement)
+    if (participants.length > 0) {
+        for (const child of scroller.children) {
+            const elem_person = participants.indexOf(child.id);
+            if (elem_person === -1) {
+                child.remove();
+                delete participants[elem_person]
+            }
+        }
+    }
+}
+
+const createProfilePic = function (data, elem, containerWebcam) {
+    let initials = document.createElement('div')
+    initials.classList.add('initials')
+    initials.innerText = data.initials
+    initials.id = elem
+    containerWebcam.appendChild(initials)
 }

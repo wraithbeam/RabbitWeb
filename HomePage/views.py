@@ -58,15 +58,34 @@ def create_new_meeting(request):
         meeting = Meeting(link=key, members=1, admin=participant[0])
         meeting.save()
 
-        MeetingParticipants(person=participant[0], meeting=meeting).save()
+        meetingParticipant = MeetingParticipants.objects.get_or_create(person=participant[0], meeting=meeting)
+        meetingParticipant[0].save()
         return redirect(f"../../{key}")
     else:
         return redirect('sign-in')
 
 
 def new_meeting(request, link):
-    if request.user.is_authenticated:
-        context = {'link': link, 'persone': request.user.id}
-        return render(request, 'HomePage/Meeting.html', context)
-    else:
-        return redirect('sign-in')
+    try:
+        meeting = Meeting.objects.get(link=link)
+        if request.user.is_authenticated:
+            participant = Participant.objects.get_or_create(person=request.user)
+            meetingParticipant = MeetingParticipants.objects.get_or_create(person=participant[0], meeting=meeting)
+
+            if meetingParticipant[0].meeting == meeting:
+                context = {'link': link, 'persone': participant[0].id}
+                return render(request, 'HomePage/Meeting.html', context)
+
+            meeting.members += 1
+
+            participant[0].save()
+            meetingParticipant[0].save()
+            meeting.save()
+
+            context = {'link': link, 'persone': request.user.id}
+            return render(request, 'HomePage/Meeting.html', context)
+        else:
+            return redirect('sign-in')
+    except Exception as e:
+        print(e)
+        return redirect('/')

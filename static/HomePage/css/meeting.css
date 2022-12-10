@@ -9,8 +9,13 @@ body {
 }
 
 .scroller {
-    display: grid;
+    display: flex;
     grid-auto-flow: column;
+    overflow-x: auto;
+}
+
+.scroller::-webkit-scrollbar {
+    display: none;
 }
 
 .webcam {
@@ -24,7 +29,6 @@ body {
     margin-right: 5px;
     width: 100%;
     height: 100%;
-    /*background: #333333;*/
 }
 
 video {
@@ -69,8 +73,8 @@ video {
 }
 
 #item-1 {
+    background: url("/static/HomePage/img/no-cam.jpeg") 50%;
 
-    background-color: #D8AB85;
     grid-row-start: 2;
     grid-column-start: 1;
 
@@ -79,23 +83,71 @@ video {
 
 }
 
-#item-2 {
-    background-color: #9BBDFD;
-    grid-row-start: 4;
-    grid-column-start: 4;
-
-    grid-row-end: 5;
-    grid-column-end: 7;
-}
-
 #item-3 {
-    background-color: #F9F96A;
     grid-row-start: 2;
     grid-column-start: 4;
     grid-column-end: 7;
-    grid-row-end: 4;
+    grid-row-end: 5;
+    background: moccasin;
 }
 
-.people-webcam{
- height: 25vh;
+.people-webcam {
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.webcam-container {
+    height: 23vh;
+    width: 16%;
+    min-width: 224px;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.initials {
+    flex: 0 0 auto;
+    font-size: 8vh;
+    background-color: brown;
+    padding: 15px 20px;
+    border-radius: 50%;
+}
+
+.ui-button {
+    margin-left: 5px;
+    padding: 25px;
+    border-radius: 100%;
+    background: lightgray;
+    width: 100px;
+    height: 100px;
+}
+
+.ui-button:hover {
+    background: #ffffff;
+}
+
+#webcam-icon-off {
+    display: none;
+}
+
+#mic-icon-off {
+    display: none;
+}
+
+.button-bar {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    bottom: 10px;
+    align-content: center;
+    left: 14%;
+}
+
+.chosen-webcam:hover .button-bar {
+    display: flow-root;
 }
