@@ -72,13 +72,17 @@
     width: 41%;
     height: 8vh;
 
-    background: none;
+    background: #4080CD;
+    border: none;
     border-radius: 42px;
     padding: 8px;
     overflow: hidden;
     font-size: 20px;
     color: white;
 
+}
+.message-input::placeholder{
+    color: white;
 }
 
 .input-form {
