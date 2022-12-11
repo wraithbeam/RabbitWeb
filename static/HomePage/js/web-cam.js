@@ -10,8 +10,8 @@ video_io.onclick = function () {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         is_webcam_on = !is_webcam_on
         if (is_webcam_on) {
-            web_cam_on_icon.style.display = "none"
             web_cam_off_icon.style.display = "block"
+            web_cam_on_icon.style.display = "none"
             navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) {
                 web_stream = stream
                 video.srcObject = stream;

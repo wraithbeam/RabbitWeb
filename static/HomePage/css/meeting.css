@@ -12,6 +12,7 @@ body {
     display: flex;
     grid-auto-flow: column;
     overflow-x: auto;
+    background: #FFFFF9;
 }
 
 .scroller::-webkit-scrollbar {
@@ -63,8 +64,6 @@ video {
 }
 
 #item-0 {
-
-    background-color: #5C99BB;
     grid-row-start: 1;
     grid-column-start: 1;
     grid-row-end: 2;
@@ -98,10 +97,10 @@ video {
 }
 
 .webcam-container {
+    background-color: #0D4D9B;
     height: 23vh;
     width: 16%;
     min-width: 224px;
-    background-color: antiquewhite;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -111,24 +110,32 @@ video {
 }
 
 .initials {
+    color: #FFFFF2FF;
     flex: 0 0 auto;
     font-size: 8vh;
-    background-color: brown;
     padding: 15px 20px;
     border-radius: 50%;
+    background-color: #4080CD;
+    box-shadow: 3px 3px 9px #043065;
 }
 
 .ui-button {
+    border: white;
+    background: #4080CD;
+    box-shadow: 3px 4px 8px black;
     margin-left: 5px;
     padding: 25px;
     border-radius: 100%;
-    background: lightgray;
     width: 100px;
     height: 100px;
 }
 
+svg{
+    color: white;
+}
+
 .ui-button:hover {
-    background: #ffffff;
+    background: #0D4D9B;
 }
 
 #webcam-icon-off {
