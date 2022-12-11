@@ -30,3 +30,17 @@ class MeetingParticipants(models.Model):
 
     def __str__(self):
         return self.person.__str__() + " in " + self.meeting.__str__()
+
+
+class MeetingFast:
+    link = 0
+    initials = {}
+    webcams = {}
+
+    def __init__(self):
+        pass
+
+    def __init__(self, person, link, initials, webcam):
+        self.link = link
+        self.initials[person] = initials
+        self.webcams[person] = webcam

@@ -3,6 +3,20 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href={% static '/HomePage/css/header.css' %}>
     <link rel="stylesheet" type="text/css" href={% static '/HomePage/css/meeting.css' %}>
+    <script type="text/javascript">
+        const getPersonInitials = function () {
+            return "{{ person_initials }}"
+        }
+        const getLink = function () {
+            return "{{ link }}"
+        }
+        const getPersonName = function () {
+            return "{{ person_name }}"
+        }
+        const getPersonId = function () {
+            return "{{ person_id }}"
+        }
+    </script>
 {% endblock usage %}
 {% block content %}
     <div class="call-interface angry-grid">
@@ -53,20 +67,6 @@
     </div>
 {% endblock content %}
 {% block footer %}
-    <script type="text/javascript">
-        const getPersonInitials = function () {
-            return "{{ person_initials }}"
-        }
-        const getLink = function () {
-            return "{{ link }}"
-        }
-        const getPersonName = function (){
-            return "{{ person_name }}"
-        }
-        const getPersonId = function (){
-            return {{ person_id }}
-        }
-    </script>
     <script src="{% static 'HomePage/js/web-cam.js' %}"></script>
     <script src="{% static 'HomePage/js/web-cam-ws.js' %}"></script>
     <script src="{% static 'HomePage/js/web-socket-logic.js' %}"></script>

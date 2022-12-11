@@ -10,7 +10,6 @@ const webSocket = new WebSocket(
 
 webSocket.onopen = function () {
     //Sending webcam
-    console.log("Open")
     setInterval(() => {
         if (webSocket.OPEN) {
             webSocket.send(JSON.stringify({

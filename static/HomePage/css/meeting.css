@@ -87,7 +87,7 @@ video {
     grid-column-start: 4;
     grid-column-end: 7;
     grid-row-end: 5;
-    background: moccasin;
+    background: #333333;
 }
 
 .people-webcam {
