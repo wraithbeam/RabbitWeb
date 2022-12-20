@@ -5,9 +5,10 @@ var is_mic_on = false
 
 var disconnect = document.getElementById('call-off-io')
 
-mic_io.onclick = function () {
+mic_io.onclick = async function () {
     is_mic_on = !is_mic_on
     if (is_mic_on) {
+        await start_micro()
         mic_on_icon.style.display = "none"
         mic_off_icon.style.display = "block"
     } else {

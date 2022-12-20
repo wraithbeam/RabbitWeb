@@ -3,18 +3,7 @@ let send_button = document.getElementById('bi-send-fill')
 let messages = document.getElementById('messages')
 
 
-let webSocketChat = new WebSocket(
-    'ws://'
-    + window.location.host
-    + '/ws/meeting/'
-    + getLink()
-    + '/'
-    + getLink()
-    + '/'
-);
-
-webSocketChat.onmessage = function (e) {
-    const dataJson = JSON.parse(e.data);
+const show_message = function (dataJson) {
     let initials = dataJson.initials
     let message = dataJson.message
     let id = dataJson.personId
@@ -61,11 +50,14 @@ input_message.addEventListener('keyup', function (e) {
 const send_message = function () {
     let text = input_message.value
     input_message.value = ''
-    webSocketChat.send(JSON.stringify(
+    webSocket.send(JSON.stringify(
         {
-            'initials': getPersonInitials(),
-            'message': text,
-            'personId': getPersonId(),
+            'type': 'message',
+            'content': {
+                'initials': getPersonInitials(),
+                'message': text,
+                'personId': getPersonId()
+            }
         }
     ))
 }

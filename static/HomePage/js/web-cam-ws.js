@@ -1,4 +1,4 @@
-const FPS = 2 //4
+const FPS = 20 //4
 const scroller = document.getElementById('item-0')
 
 const getFrame = () => {
@@ -10,12 +10,9 @@ const getFrame = () => {
     return canvas.toDataURL('image/jpeg', 0.6);
 }
 
-const fillWebcams = (data) => {
-    const dataJson = JSON.parse(data);
-    const participants = [];
+const fillWebcams = (dataJson) => {
     let webcam_content;
     for (const elem in dataJson) {
-        participants.push(elem + "-container")
         let somePersonWebcam = document.getElementById(elem + "-container")
         if (somePersonWebcam == null) {
             let newPersonWebcamContainer = document.createElement('div')
@@ -44,21 +41,13 @@ const fillWebcams = (data) => {
                 if (webcam_content.tagName !== 'IMG') {
                     webcam_content.remove()
                     webcam_content = document.createElement('IMG')
+
                     webcam_content.id = elem
                     webcam_content.classList.add("people-webcam")
                     somePersonWebcam.appendChild(webcam_content)
                     scroller.appendChild(somePersonWebcam)
                 }
                 webcam_content.src = dataJson[elem].webcam_meta
-            }
-        }
-    }
-    if (participants.length > 0) {
-        for (const child of scroller.children) {
-            const elem_person = participants.indexOf(child.id);
-            if (elem_person === -1) {
-                child.remove();
-                delete participants[elem_person]
             }
         }
     }
@@ -70,4 +59,10 @@ const createProfilePic = function (data, elem, containerWebcam) {
     initials.innerText = data.initials
     initials.id = elem
     containerWebcam.appendChild(initials)
+}
+
+const updateWebcams = function () {
+    for (let i = 0; i < scroller.children.length; i++) {
+        scroller.children.item(i).remove()
+    }
 }
