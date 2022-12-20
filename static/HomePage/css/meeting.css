@@ -68,10 +68,13 @@ video {
     grid-column-start: 1;
     grid-row-end: 2;
     grid-column-end: 7;
-
+    background: rgba(30, 30, 30);
 }
 
 #item-1 {
+    display: flex;
+    align-items: center;
+
     background: url("/static/HomePage/img/no-cam.jpeg") 50%;
 
     grid-row-start: 2;
@@ -91,7 +94,7 @@ video {
 }
 
 .people-webcam {
-    height: 100%;
+    width: 100%;
     border-radius: 10px;
     object-fit: cover;
 }
@@ -130,7 +133,7 @@ video {
     height: 100px;
 }
 
-svg{
+svg {
     color: white;
 }
 
@@ -157,4 +160,26 @@ svg{
 
 .chosen-webcam:hover .button-bar {
     display: flow-root;
+}
+
+#chosen-webcam-img-id {
+    width: 100%;
+}
+
+#cancel-button {
+    position: relative;
+    width: 3vw;
+    height: 6vh;
+    display: none;
+}
+
+.cancel-button {
+    position: absolute;
+    top: 26vh;
+    left: 46vw;
+}
+
+button {
+    border: none;
+    background: none;
 }

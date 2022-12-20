@@ -22,11 +22,7 @@ const fillWebcams = (dataJson) => {
             if (dataJson[elem].webcam_meta === "data:,") {
                 createProfilePic(dataJson[elem], elem, newPersonWebcamContainer)
             } else {
-                webcam_content = document.createElement('img')
-                webcam_content.id = elem
-                webcam_content.src = dataJson[elem].webcam_meta
-                webcam_content.classList.add("people-webcam")
-                newPersonWebcamContainer.appendChild(webcam_content)
+                createWebcamNode(webcam_content, newPersonWebcamContainer, elem, dataJson)
             }
             scroller.appendChild(newPersonWebcamContainer)
         } else {
@@ -40,17 +36,21 @@ const fillWebcams = (dataJson) => {
             } else {
                 if (webcam_content.tagName !== 'IMG') {
                     webcam_content.remove()
-                    webcam_content = document.createElement('IMG')
-
-                    webcam_content.id = elem
-                    webcam_content.classList.add("people-webcam")
-                    somePersonWebcam.appendChild(webcam_content)
-                    scroller.appendChild(somePersonWebcam)
+                    createWebcamNode(webcam_content, somePersonWebcam, elem, dataJson)
                 }
                 webcam_content.src = dataJson[elem].webcam_meta
             }
         }
     }
+}
+
+const createWebcamNode = function (webcam_content, personWebcamContainer, elem, dataJson) {
+    webcam_content = document.createElement('img')
+    webcam_content.id = elem
+    webcam_content.src = dataJson[elem].webcam_meta
+    webcam_content.classList.add("people-webcam")
+    webcam_content.onclick = () => changeWebcam(webcam_content)
+    personWebcamContainer.appendChild(webcam_content)
 }
 
 const createProfilePic = function (data, elem, containerWebcam) {

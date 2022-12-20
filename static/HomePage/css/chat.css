@@ -69,13 +69,13 @@
 }
 
 .message-input {
-    width: 41%;
+    width: 40vw;
     height: 8vh;
 
     background: #4080CD;
     border: none;
     border-radius: 42px;
-    padding: 8px;
+    padding: 1vh 1vh 1vh 2vw;
     overflow: hidden;
     font-size: 20px;
     color: white;
