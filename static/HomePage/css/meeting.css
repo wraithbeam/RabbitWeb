@@ -173,6 +173,12 @@ svg {
     display: none;
 }
 
+#cancel-button:hover{
+    background: #333333;
+    border-radius: 100%;
+    padding: 2px;
+}
+
 .cancel-button {
     position: absolute;
     top: 26vh;

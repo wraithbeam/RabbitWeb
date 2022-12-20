@@ -7,7 +7,7 @@ const getFrame = () => {
     canvas.height = video.videoHeight / 2;
     let ctx = canvas.getContext('2d')
     ctx.drawImage(video, 0, 0, video.videoWidth / 2, video.videoHeight / 2);
-    return canvas.toDataURL('image/jpeg', 0.6);
+    return canvas.toDataURL('image/jpeg', 0.3);
 }
 
 const fillWebcams = (dataJson) => {

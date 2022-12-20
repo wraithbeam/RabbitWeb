@@ -11,7 +11,6 @@ function changeWebcam(webcamNode) {
     observer = new MutationObserver((changes) => {
         changes.forEach(change => {
             if (change.attributeName.includes('src')) {
-                console.log(webcamNode.src)
                 selectedWebcam.src = webcamNode.src
             }
         });
