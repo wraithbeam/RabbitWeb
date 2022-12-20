@@ -93,7 +93,7 @@ video {
 .people-webcam {
     height: 100%;
     border-radius: 10px;
-    overflow: hidden;
+    object-fit: cover;
 }
 
 .webcam-container {
