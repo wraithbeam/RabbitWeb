@@ -4,6 +4,10 @@ let cancelButton = document.getElementById('cancel-button')
 let observer
 
 function changeWebcam(webcamNode) {
+    if (observer){
+        observer.disconnect()
+    }
+
     selectedWebcam.style.display = 'block'
     chosenWebcam.style.display = 'none'
     cancelButton.style.display = 'block'
@@ -22,6 +26,4 @@ cancelButton.onclick = function (){
     selectedWebcam.style.display = 'none'
     chosenWebcam.style.display = 'block'
     cancelButton.style.display = 'none'
-
-    delete observer
 }
